@@ -4,7 +4,12 @@ import Login from './pages/login/Login'
 import Register from './pages/login/Register'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
+
+
 function App() {
+
+  
+
   return (
     <div className="container-fluid">
       <Router>
