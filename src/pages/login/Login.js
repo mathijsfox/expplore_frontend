@@ -1,25 +1,63 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
-
+import * as firebase from "firebase/app";
+import "firebase/auth";
 class Login extends Component {
+
+    constructor(props) {
+
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser) {
+                console.log('logged in');
+            }
+            else {
+                console.log('not logged in');
+            }
+        })
+    };
+
+    handleSubmit(event) {
+        this.login();
+    }
+    login() {
+        const email = this.state.email;
+        const password = this.state.password;
+
+        const promise = firebase.auth().signInWithEmailAndPassword(email, password);
+        promise.catch(e => console.log(e.message));
+        
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+        console.log(this.state);
+    }
+
     render() {
         return (
             <div className="container">
                 <div className="wrapper fadeInDown">
                     <div id="formContent">
-                        <div class="fadeIn first">
+                        <div className="fadeIn first">
                             <img src={logo_expplore} id="icon" alt="User Icon" />
                         </div>
-                        <form>
-                            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"></input>
-                            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"></input>
-                            <input type="submit" class="fadeIn fourth" value="Log In"></input>
-                        </form>
-                        <div id="formFooter">
-                            <a class="underlineHover" href="#">Forgot Password?</a>
-                        </div>
+                        <input type="text" id="email" className="fadeIn second" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
+                        <input type="password" id="password" className="fadeIn third" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"></input>
+                        <Link to="/">
+                            <input type="submit" className="fadeIn fourth" value="login" onClick={this.handleSubmit}></input>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,28 +1,11 @@
 import React, { Component } from 'react';
 import './Register.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
 import * as firebase from "firebase/app";
 import "firebase/auth";
-
-
-var firebaseConfig = {
-    apiKey: "AIzaSyDEcESBUlY2k4BYw5bGu0fcw5SE762g2LM",
-    authDomain: "expplore-5486f.firebaseapp.com",
-    databaseURL: "https://expplore-5486f.firebaseio.com",
-    projectId: "expplore-5486f",
-    storageBucket: "expplore-5486f.appspot.com",
-    messagingSenderId: "477652425945",
-    appId: "1:477652425945:web:ccd1cce9d5dda98b2072c8",
-    measurementId: "G-BG3LFD285Z"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-
 class Register extends Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {
@@ -33,15 +16,27 @@ class Register extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(firebaseUser => {
+            if (firebaseUser) {
+                console.log('registered');
+            }
+            else {
+                console.log('not registered');
+            }
+        })
+    }
     handleSubmit(event) {
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).catch(function(error) {
-            Console.log(error.code);
-            Console.log(error.message);
-          });
+        const email = this.state.email;
+        const password = this.state.password;
+
+        const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
+        promise.catch(e => console.log(e.message));
+        console.log('register succesfull');
     }
 
     handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
+        this.setState({ [event.target.name]: event.target.value });
         console.log(this.state);
     }
     render() {
@@ -49,17 +44,14 @@ class Register extends Component {
             <div className="container">
                 <div className="wrapper fadeInDown">
                     <div id="formContent">
-                        <div class="fadeIn first">
+                        <div className="fadeIn first">
                             <img src={logo_expplore} id="icon" alt="User Icon" />
                         </div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" id="email" class="fadeIn second" name="register" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
-                            <input type="text" id="password" class="fadeIn third" name="register" value={this.state.password} onChange={this.handleChange} placeholder="password"></input>
-                            <input type="submit" class="fadeIn fourth" value="Register"></input>
-                        </form>
-                        <div id="formFooter">
-                            <a class="underlineHover" href="#">Forgot Password?</a>
-                        </div>
+                        <input type="text" id="email" className="fadeIn second" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
+                        <input type="password" id="password" className="fadeIn third" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"></input>
+                        <Link to="/">
+                            <input type="submit" className="fadeIn fourth" value="Register" onClick={this.handleSubmit}></input>
+                        </Link>
                     </div>
                 </div>
             </div>
