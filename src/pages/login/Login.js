@@ -37,7 +37,6 @@ class Login extends Component {
 
         const promise = firebase.auth().signInWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
-        
     }
 
     handleChange(event) {

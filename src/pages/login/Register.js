@@ -33,6 +33,9 @@ class Register extends Component {
         const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
         console.log('register succesfull');
+
+        // zo maak je een user aan.
+        // var user = { name: " dsajfhsa", email:"hoi"};
     }
 
     handleChange(event) {
