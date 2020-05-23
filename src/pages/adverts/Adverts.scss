@@ -47,7 +47,7 @@ html {
     background: #fff;
     padding: 30px;
     width: 90%;
-    max-width: 450px;
+    max-width: 700px;
     position: relative;
     padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -114,8 +114,8 @@ html {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
-  
-  input[type=password] {
+
+  input[type=number] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -125,7 +125,7 @@ html {
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 85%;
+    width: 70%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -134,17 +134,18 @@ html {
     transition: all 0.5s ease-in-out;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
+    
   }
-  
-  input[type=password]:focus {
+
+
+  input[type=number]:focus {
     background-color: #fff;
     border-bottom: 2px solid #72dfd0;
   }
   
-  input[type=password]:placeholder {
+  input[type=number]:placeholder {
     color: #cccccc;
   }
-
   textarea[type=text]{
     background-color: #f6f6f6;
     border: none;
@@ -155,7 +156,7 @@ html {
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 85%;
+    width: 70%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -173,6 +174,36 @@ html {
   textarea[type=text]:placeholder {
     color: #cccccc;
   }
+
+  input[type=date] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 70%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+  }
+  
+  input[type=date]:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #72dfd0;
+  }
+  
+  input[type=date]:placeholder {
+    color: #cccccc;
+  }
   input[type=text] {
     background-color: #f6f6f6;
     border: none;
@@ -183,7 +214,7 @@ html {
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 85%;
+    width: 70%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -317,6 +348,6 @@ html {
   } 
   
   #icon {
-    width:60%;
+    width:50%;
   }
   
