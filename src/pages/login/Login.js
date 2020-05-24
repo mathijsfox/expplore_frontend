@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
 import * as firebase from "firebase/app";
 import "firebase/auth";
+
 class Login extends Component {
 
     constructor(props) {
@@ -27,6 +28,8 @@ class Login extends Component {
             }
         })
     };
+
+   
 
     handleSubmit(event) {
         this.login();

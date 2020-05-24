@@ -68,12 +68,14 @@ class nav extends Component {
                             <div>
                                 {this.state.othercontent}
                             </div>
+
                             <div>
-                                {this.state.content}
+                                {this.state.morecontent}
+                            </div>
+                            <div>
+                                
                             </div>
                         </div>
-
-
                     </nav>
                     <Switch>
                         <Route exact path="/PlaceAdvert" component={PlaceAdvert} />
