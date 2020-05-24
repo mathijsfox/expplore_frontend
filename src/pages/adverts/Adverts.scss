@@ -1,19 +1,18 @@
-#filter{
-    position: fixed;
-    margin-left: -20px;
-    margin-top: 50px;
-}html {
+html {
     background-color: #72dfd0;
   }
   
   body {
+    font-family: "Poppins", sans-serif;
     height: 100vh;
+  }
   
   a {
     color: #72dfd0;
     display:inline-block;
     text-decoration: none;
     font-weight: 400;
+  }
   
   h2 {
     text-align: center;
