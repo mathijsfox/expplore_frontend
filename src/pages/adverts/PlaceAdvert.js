@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Adverts.scss';
 import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
-//import axios from 'axios';
+import axios from 'axios';
 
 class PlaceAdvert extends Component {
     constructor(props) {
@@ -18,7 +18,8 @@ class PlaceAdvert extends Component {
             height:'',
             startingDate:'',
             endingDate:'',
-            image:''
+            image:null,
+            advertOwner:''
 
         }
     this.handleChange = this.handleChange.bind(this);
@@ -29,6 +30,7 @@ class PlaceAdvert extends Component {
         this.setState({
             image: e.target.files[0]
         });
+        
     }
 
     handleChange(event) {
@@ -37,7 +39,7 @@ class PlaceAdvert extends Component {
     }
 
     handleSubmit(event) {
-        
+        axios.post('')
     }
     render(){
         return(
@@ -57,7 +59,7 @@ class PlaceAdvert extends Component {
                     <input type="date" id="startingDate" className="fadeIn third" name="startingDate" value={this.state.startingDate} onChange={this.handleChange} placeholder="beschikbaar vanaf"></input>
                     <input type="date" id="endingDate" className="fadeIn third" name="endingDate" value={this.state.endingDate} onChange={this.handleChange} placeholder="beschikbaar tot"></input>
                     <p className="fadeIn third">kies uw foto</p>
-                    <input type="file" id="image" className="fadeIn third" name="image" value={this.state.image} onChange={this.handleChange}></input>
+                    <input type="file" id="image" className="fadeIn third" name="image" value={this.state.image} onChange={this.onFileChangeHandler}></input>
                     <textarea type="text" rows="10" id="description" className="fadeIn third" name="description" value={this.state.description} onChange={this.handleChange} placeholder="advertentie omschrijving"></textarea>
                     <Link to="/">
                         <input type="submit" className="fadeIn fourth" value="Register" onClick={this.handleSubmit}></input>
