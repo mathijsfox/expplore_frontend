@@ -55,7 +55,7 @@ class Login extends Component {
                         <div className="fadeIn first">
                             <img src={logo_expplore} id="icon" alt="User Icon" />
                         </div>
-                        <input type="text" id="email" className="fadeIn second" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
+                        <input type="text" id="email" className="fadeIn third" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
                         <input type="password" id="password" className="fadeIn third" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"></input>
                         <Link to="/">
                             <input type="submit" className="fadeIn fourth" value="login" onClick={this.handleSubmit}></input>

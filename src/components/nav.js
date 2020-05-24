@@ -22,10 +22,10 @@ class nav extends Component {
             if (firebaseUser) {
                 console.log(firebaseUser);
                 this.setState({
-                    content: <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.logout} style={{ marginRight: 10 }}>log out</button>,
+                    content: <button className="btn btn-outline-success my-2 my-sm-0" onClick={this.logout} >log out</button>,
                     othercontent: <div>
                         <Link to="/PlaceAdvert">
-                            <button className="btn btn-outline-success my-2 my-sm-0">Place advert</button>
+                            <button className="btn btn-outline-success my-2 my-sm-0" style={{ marginRight: 10 }}>Place advert</button>
                         </Link>
                     </div>
 
@@ -71,7 +71,7 @@ class nav extends Component {
                             </div>
 
                             <div>
-                                {this.state.morecontent}
+                                {this.state.content}
                             </div>
                             <div>
                                 

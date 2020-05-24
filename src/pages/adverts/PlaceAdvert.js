@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Adverts.scss';
 import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
+//import axios from 'axios';
 
 class PlaceAdvert extends Component {
     constructor(props) {
