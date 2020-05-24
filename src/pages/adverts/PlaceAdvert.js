@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import './Adverts.scss';
+import { withRouter, Link } from 'react-router-dom';
+import logo_expplore from '../../images/logo_expplore.png';
+
+class PlaceAdvert extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            title:'',
+            category:'',
+            description:'',
+            price:'',
+            place:'',
+            length:'',
+            width:'',
+            height:'',
+            startingDate:'',
+            endingDate:'',
+            image:''
+
+        }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    onFileChangeHandler = (e) =>{
+        this.setState({
+            image: e.target.files[0]
+        });
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+        console.log(this.state);
+    }
+
+    handleSubmit(event) {
+        
+    }
+    render(){
+        return(
+            <div className="container">
+            <div className="wrapper fadeInDown">
+                <div id="formContent">
+                    <div className="fadeIn first">
+                        <img src={logo_expplore} id="icon" alt="User Icon" />
+                    </div>
+                    <input type="text" id="title" className="fadeIn second" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Titel advertentie"></input>
+                    <input type="text" id="category" className="fadeIn third" name="category" value={this.state.category} onChange={this.handleChange} placeholder="Categorie"></input>
+                    <input type="number" id="price" step="1" className="fadeIn third" name="price" value={this.state.price} onChange={this.handleChange} placeholder="Prijs per dag"></input>
+                    <input type="text" id="place" className="fadeIn third" name="place" value={this.state.place} onChange={this.handleChange} placeholder="Plaats"></input>
+                    <input type="number" id="length" data-decimals="2" min="0" step="0.1" className="fadeIn third" name="length" value={this.state.length} onChange={this.handleChange} placeholder="Lengte"></input>
+                    <input type="number" id="width" data-decimals="2" min="0" step="0.1" className="fadeIn third" name="width" value={this.state.width} onChange={this.handleChange} placeholder="Breedte"></input>
+                    <input type="number" id="height" data-decimals="2" min="0" step="0.1" className="fadeIn third" name="height" value={this.state.height} onChange={this.handleChange} placeholder="Hoogte"></input>
+                    <input type="date" id="startingDate" className="fadeIn third" name="startingDate" value={this.state.startingDate} onChange={this.handleChange} placeholder="beschikbaar vanaf"></input>
+                    <input type="date" id="endingDate" className="fadeIn third" name="endingDate" value={this.state.endingDate} onChange={this.handleChange} placeholder="beschikbaar tot"></input>
+                    <p className="fadeIn third">kies uw foto</p>
+                    <input type="file" id="image" className="fadeIn third" name="image" value={this.state.image} onChange={this.handleChange}></input>
+                    <textarea type="text" rows="10" id="description" className="fadeIn third" name="description" value={this.state.description} onChange={this.handleChange} placeholder="advertentie omschrijving"></textarea>
+                    <Link to="/">
+                        <input type="submit" className="fadeIn fourth" value="Register" onClick={this.handleSubmit}></input>
+                    </Link>
+                </div>
+            </div>
+        </div>
+        );
+    }
+}
+export default withRouter(PlaceAdvert);
