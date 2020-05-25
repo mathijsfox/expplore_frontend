@@ -22,6 +22,8 @@ class Login extends Component {
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
                 console.log('logged in');
+                localStorage.setItem('loggedinuserid',firebaseUser.uid);
+                console.log(firebaseUser.uid + 'hallo');
             }
             else {
                 console.log('not logged in');
@@ -40,6 +42,7 @@ class Login extends Component {
 
         const promise = firebase.auth().signInWithEmailAndPassword(email, password);
         promise.catch(e => console.log(e.message));
+        
     }
 
     handleChange(event) {
