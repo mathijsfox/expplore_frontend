@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Adverts.scss';
 import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
-//import axios from 'axios';
-
+import axios from 'axios';
+import { Advert } from '../../models/Advert';
 class PlaceAdvert extends Component {
     constructor(props) {
         super(props)
@@ -41,10 +41,14 @@ class PlaceAdvert extends Component {
        
     }
 
+    postAdvert(){
+        var advert = new Advert(this.state.title,this.state.category,this.state.description,this.state.price,this.state.place,
+            this.state.length,this.state.width,this.state.height,this.state.startingDate,this.state.endingDate,this.state.advertOwner)
+    }
+
     handleSubmit(){
         console.log(this.state)
-
-        
+        this.postAdvert();
     }
     render(){
         return(
