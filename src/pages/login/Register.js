@@ -44,16 +44,14 @@ class Register extends Component {
 
     handleSubmit(event) {
         console.log("handlesubmit", this.state)
-
-
+        
         const email = this.state.email;
         const password = this.state.password;
-        
         
         const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
 
         promise.then(x => {
-            console.log('hallo',x.user.uid)
+            
             this.setState({
                 id: x.user.uid
             });
