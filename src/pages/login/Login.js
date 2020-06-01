@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
 import * as firebase from "firebase/app";
 import "firebase/auth";
-
+import { User } from '../../models/User';
 class Login extends Component {
 
     constructor(props) {
@@ -22,7 +22,8 @@ class Login extends Component {
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if (firebaseUser) {
                 console.log('logged in');
-                localStorage.setItem('loggedinuserid',firebaseUser.uid);
+
+                localStorage.setItem('loggedinuser',new User(firebaseUser.uid,firebaseUser.email,firebaseUser.displayName));
                 console.log(firebaseUser.uid + 'hallo');
             }
             else {

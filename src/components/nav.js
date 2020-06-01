@@ -55,8 +55,7 @@ class nav extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-
+            <div className="container-fluid" >
                 <Router>
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <Link to="/">

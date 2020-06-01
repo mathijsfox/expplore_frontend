@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Adverts.scss';
 import { withRouter, Link } from 'react-router-dom';
 import Axios from 'axios';
+import testimage from '../../images/aanhanger1.jpg'
 
 var _baseUrl = 'http://localhost:9020/';
 var _protocol = 'adverts';
@@ -20,36 +21,55 @@ class Adverts extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    formatDate(date){
+        const olddate = new Date(date);
+        var d = olddate.getDate();
+        var m = olddate.getMonth();
+        var y = olddate.getFullYear();
+
+        const newdate = d + '-' + m + '-' + y;
+
+        console.log(newdate);
+        return newdate;
+    }
+
     componentDidMount = () => {
         Axios.get(_baseUrl + _protocol)
             .then(res => {
-                this.setState({ adverts: res.data });
+                this.setState({ 
+                    adverts: res.data 
+                });
                 console.log(this.state.adverts)
                 this.generateAdverts();
             })
 
-    };
+    }; 
 
     generateAdverts() {
         this.state.adverts.forEach(a => {
-            content.push(<div className="card">
-                <div className="card-header">
-                        <h5>{a.title}</h5>
+            this.formatDate(a.endingDate);
+            content.push(
+                <div className="container" id="cardcontainer" key={a.id}>
+                    <div className="images">
+                        <p>Categorie: {a.category}</p>
+                        <img src={testimage} />
                     </div>
-                <div className="card-body">
-                    
-                    <h6 className="card-subtitle mb-2 text-muted">{a.category}</h6>
-                    <p className="card-text">Plaats: {a.place}</p>
-                    <p className="card-text">Omschrijving: {a.description}</p>
-                    <p className="card-text">€{a.price}</p>
-                    <p className="card-text">lengte x breedte x hoogte: {a.length} x {a.height} x {a.height}</p>
-                    <p className="card-text">te leen vanaf: {a.startingdate}</p>
-                    <p className="card-text">te leen tot: {a.endingdate}</p>
-                    <Link to="/">
-                        <input type="submit" className="fadeIn first" value="bekijk advertentie" onClick={this.handleSubmit}></input>
-                    </Link>
+                    <div className="sizes">
+                    <p className="desc">Afmetingen (Lengte x Breedte x Hoogte):<br />{a.length}CM x {a.height}CM x {a.height}CM</p>
+                    </div>
+                    <div className="product">
+                        
+                        <h1>{a.title}</h1>
+                        
+                        <p className="desc">Beschrijving:<br />{a.description}</p>
+                        <p className="desc">Te leen vanaf: {this.formatDate(a.startingDate)}</p>
+                        <p className="desc">Te leen tot: {this.formatDate(a.endingDate)}</p>
+                        <div className="buttons">
+                            <input type="submit" className="fadeIn first" value="bekijk advertentie" onClick={this.handleSubmit}></input>
+                        </div>
+                        <h2 id="priceperday">€{a.price} per dag</h2>
+                    </div>
                 </div>
-            </div>
             )
         });
     }
@@ -64,7 +84,7 @@ class Adverts extends Component {
                 <div className="row">
                     <div className="col-lg-2" id="filter">
                         <div className="card">
-                            <header className="card-header">
+                            <header className="card-header" id="cardheader">
                                 <h6 className="title">Filter:</h6>
                             </header>
                             <article className="card-group-item">
@@ -125,7 +145,7 @@ class Adverts extends Component {
                             </article>
                         </div>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-8">
                         {content}
                     </div>
                 </div>

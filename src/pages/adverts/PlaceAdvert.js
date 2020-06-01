@@ -4,7 +4,6 @@ import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
 import axios from 'axios';
 import { Advert } from '../../models/Advert';
-
 var _baseUrl = 'http://localhost:9020/';
 var _protocol = 'adverts';
 
@@ -41,20 +40,18 @@ class PlaceAdvert extends Component {
         
     }
     handleChange(event) {
-        this.setState({advertOwner: localStorage.getItem('loggedinuserid')});
+        this.setState({advertOwner: localStorage.getItem('loggedinuser')});
         console.log(this.state.advertOwner+"1231232123");
         this.setState({ [event.target.name]: event.target.value });
     }
 
     postAdvert(){
         var advert = new Advert(this.state.title,this.state.category,this.state.description,this.state.price,this.state.place,
-            this.state.length,this.state.width,this.state.height,this.state.startingDate,this.state.endingDate,this.state.advertOwner);
+            this.state.length,this.state.width,this.state.height,this.state.startingDate,this.state.endingDate,this.state.advertOwnerId);
         axios.post(_baseUrl+_protocol,advert);
     }
 
     handleSubmit(event){
-        
-
         this.postAdvert();
     }
     render(){

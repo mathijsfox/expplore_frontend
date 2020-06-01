@@ -51,7 +51,6 @@ class Register extends Component {
         const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
 
         promise.then(x => {
-            
             this.setState({
                 id: x.user.uid
             });
