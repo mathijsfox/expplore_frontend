@@ -37,6 +37,7 @@ class Login extends Component {
     handleSubmit(event) {
         this.login();
     }
+
     login() {
         const email = this.state.email;
         const password = this.state.password;
@@ -62,7 +63,7 @@ class Login extends Component {
                         <input type="text" id="email" className="fadeIn third" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
                         <input type="password" id="password" className="fadeIn third" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"></input>
                         <Link to="/">
-                            <input type="submit" className="fadeIn fourth" value="login" onClick={this.handleSubmit}></input>
+                            <input id="buttonSubmit" type="submit" className="fadeIn fourth" value="login" onClick={this.handleSubmit}></input>
                         </Link>
                     </div>
                 </div>
