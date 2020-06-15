@@ -45,6 +45,8 @@ class Adverts extends Component {
 
     }; 
 
+
+    //to push
     generateAdverts() {
         this.state.adverts.forEach(a => {
             this.formatDate(a.endingDate);
