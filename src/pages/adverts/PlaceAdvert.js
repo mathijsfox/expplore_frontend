@@ -4,8 +4,10 @@ import { withRouter, Link } from 'react-router-dom';
 import logo_expplore from '../../images/logo_expplore.png';
 import axios from 'axios';
 import { Advert } from '../../models/Advert';
+
 var _baseUrl = 'http://localhost:9020/';
 var _protocol = 'adverts';
+var _imageprotocol = 'image'
 
 class PlaceAdvert extends Component {
     constructor(props) {
@@ -21,13 +23,13 @@ class PlaceAdvert extends Component {
             height:'',
             startingDate:'',
             endingDate:'',
-            // image:null,
+            image:'',
             advertOwner:''
 
-        }
+        };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    };
 
     // onFileChangeHandler = (e) =>{
     //     this.setState({
@@ -38,22 +40,38 @@ class PlaceAdvert extends Component {
 
     componentDidMount = () => {
         
-    }
+    };
     handleChange(event) {
         this.setState({advertOwner: localStorage.getItem('loggedinuser')});
         console.log(this.state.advertOwner+"1231232123");
         this.setState({ [event.target.name]: event.target.value });
-    }
+    };
+
+
+    postImage(){
+        
+        var image = this.state.image;
+        var formdata = new FormData();
+        formdata.append('file',image);
+
+        axios.post(_baseUrl+_imageprotocol,formdata,{
+            headers: { 'Content-Type': 'multipart/form-data' } 
+        }).then(res => {
+            console.log(res.data + "gelukt zonder fouten");
+        })
+    };
 
     postAdvert(){
+        this.postImage();
         var advert = new Advert(this.state.title,this.state.category,this.state.description,this.state.price,this.state.place,
             this.state.length,this.state.width,this.state.height,this.state.startingDate,this.state.endingDate,this.state.advertOwnerId);
+
         axios.post(_baseUrl+_protocol,advert);
-    }
+    };
 
     handleSubmit(event){
         this.postAdvert();
-    }
+    };
     render(){
         return(
             <div className="container">
@@ -76,12 +94,12 @@ class PlaceAdvert extends Component {
                     
                     <input type="number" id="height" data-decimals="2" min="0" step="0.1" className="fadeIn third" name="height" value={this.state.height} onChange={this.handleChange} placeholder="Hoogte"></input>
                     
-                    <input type="date" id="startingDate" className="fadeIn third" name="startingDate" value={this.state.startingDate} date onChange={this.handleChange} placeholder="beschikbaar vanaf"></input>
+                    <input type="date" id="startingDate" className="fadeIn third" name="startingDate" value={this.state.startingDate} onChange={this.handleChange} placeholder="beschikbaar vanaf"></input>
                     
                     <input type="date" id="endingDate" className="fadeIn third" name="endingDate" value={this.state.endingDate} onChange={this.handleChange} placeholder="beschikbaar tot"></input>
                     
                     <p className="fadeIn third">kies uw foto</p>
-                    {/* <input type="file" id="image" className="fadeIn third" name="image" value={this.state.image} onChange={this.onFileChangeHandler}></input> */}
+                    <input type="file" id="image" className="fadeIn third" name="image" value={this.state.image} onChange={this.handleChange}></input>
                     
                     <textarea type="text" rows="10" id="description" className="fadeIn third" name="description" value={this.state.description} onChange={this.handleChange} placeholder="advertentie omschrijving"></textarea>
                     <Link to="/">

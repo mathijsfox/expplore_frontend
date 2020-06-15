@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Adverts.scss';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import testimage from '../../images/aanhanger1.jpg'
 
@@ -52,7 +52,7 @@ class Adverts extends Component {
                 <div className="container" id="cardcontainer" key={a.id}>
                     <div className="images">
                         <p>Categorie: {a.category}</p>
-                        <img src={testimage} />
+                        <img src={testimage} alt="description" />
                     </div>
                     <div className="sizes">
                     <p className="desc">Afmetingen (Lengte x Breedte x Hoogte):<br />{a.length}CM x {a.height}CM x {a.height}CM</p>
