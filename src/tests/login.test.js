@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from '../App';
-import {Login, add} from '../pages/login/Login.js'
+import { shallow, render, mount } from 'enzyme';
+import Login from '../pages/login/Login';
 
-test('Test Login', () => {
-    const value = add(1,2)
-    expect(value).toBe(3);
-  });
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+it('Login testlogin with true',()=>{
+  const login = mount(<Login></Login>)
+  login.setState({
+    name: 'test'
+  })
+  expect(login.state.name).toEqual('test');
+})

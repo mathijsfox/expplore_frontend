@@ -5,7 +5,6 @@ import logo_expplore from '../../images/logo_expplore.png';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { User } from '../../models/User';
-export const add = (x,y) => x + y;
 class Login extends Component {
 
     constructor(props) {
