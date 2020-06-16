@@ -5,7 +5,8 @@ import logo_expplore from '../../images/logo_expplore.png';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { User } from '../../models/User';
-class Login extends Component {
+
+export class Login extends Component {
 
     constructor(props) {
 

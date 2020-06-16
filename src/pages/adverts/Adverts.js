@@ -18,6 +18,7 @@ class Adverts extends Component {
             adverts: []
 
         }
+        
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -40,6 +41,7 @@ class Adverts extends Component {
                     adverts: res.data 
                 });
                 console.log(this.state.adverts)
+                
                 this.generateAdverts();
             })
 
@@ -48,6 +50,7 @@ class Adverts extends Component {
 
     
     generateAdverts() {
+        content = [];
         this.state.adverts.forEach(a => {
             this.formatDate(a.endingDate);
             content.push(
