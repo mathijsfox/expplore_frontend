@@ -1,27 +1,28 @@
 import React from 'react';
-import Enzyme,{ shallow, render, mount ,dive} from 'enzyme';
+import Enzyme,{ shallow, mount } from 'enzyme';
 import Login  from '../pages/login/Login';
+import Advert from '../pages/adverts/Adverts';
+import Register from '../pages/login/Register';
+import PlaceAdvert from '../pages/adverts/PlaceAdvert';
+import Nav from '../components/nav';
 import Adapter from 'enzyme-adapter-react-16';
-import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
-let component;
+
 
 Enzyme.configure({ adapter: new Adapter() });
 
 beforeAll(()=>{
   mount(<App></App>)
-  
 })
 
-it('Login testlogin with true',()=>{
-  
-  const login = shallow(
-    <BrowserRouter>
-      <Login/>
-    </BrowserRouter>
-  );
+it('Renders all pages without crashing',()=>{
+  shallow(<Login/>);
 
-  login.setState({email:'test'})
-  expect(login.state.email).toEqual('test');
-  
+  shallow(<Advert/>);
+
+  shallow(<Register/>);
+
+  shallow(<PlaceAdvert/>);
+
+  shallow(<Nav/>);
 })
